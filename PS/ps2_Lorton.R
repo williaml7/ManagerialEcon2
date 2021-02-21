@@ -5,7 +5,7 @@ library(tidyverse)
 # Problem 2
 
   # Calculating some binomial coefficients
-  # ways to choose k (y in our problem) items from 10 without regard to order
+  # ways to choose k (y in our problem) items from n items without regard to order
   # formula: (n! / [k!(n-k)!])
   choose(n = 10, k = 0)
   choose(10, 1)
@@ -40,7 +40,8 @@ library(tidyverse)
   # 4210 people fully employed
   
   # Uniform (0,1) prior for theta
-  # Posterior is theta|y ~ Beta(y+1, n-y+1)
+  # Along with binomial(4689, theta) likelihood
+  # Posterior is thus theta|y ~ Beta(y+1, n-y+1)
   # where n = 4689, y = 4210
   n <- 4689 # number of people in sample
   y <- 4210 # number of people with full time employment
