@@ -97,6 +97,14 @@ qgamma(c(0.025,0.975),
        shape = alpha + sample.size, 
        scale = 1/(sample.size*sample.mean + beta))
 
+# R code that Dr. McFadden gave me to check reasonableness of posterior draws:
+check <- rexp(n = 1000, rate = mean(post_exp))
+mean(check)
+mean(df$Weeks)
+hist(check, breaks = 50)
+hist(df$Weeks, breaks = 50)
+# Seems fine.
+
 # Q4 d.)
 
 # Drop last 12 observations from the sample, assuming 2020 is an outlier
@@ -116,7 +124,16 @@ post_exp2 <- rgamma(10000,
 hist(post_exp2, breaks=50)
 mean(post_exp2)
 median(post_exp2)
-# Results don't change very much:
+quantile(post_exp2, c(0.025, 0.975))
+
+# Can check reasonableness again:
+check <- rexp(n = 1000, rate = mean(post_exp2))
+mean(check)
+mean(df2$Weeks)
+hist(check, breaks = 50)
+hist(df2$Weeks, breaks = 50)
+
+# Results don't change very much after dropping 2020:
 mean(post_exp)
 mean(post_exp2)
 median(post_exp)
@@ -139,7 +156,7 @@ theta <- 20
 
 # Q5 a.)
 
-v <-(1/sample.size)*sum((y-theta)^2)
+v <- (1/sample.size)*sum((y-theta)^2)
 # v = 4.9
 
 # Q5 c.)
