@@ -47,7 +47,8 @@ mean(post_norm_mu)
 ybar
 median(post_norm_mu)
 # The 95% credible interval
-qnorm(c(0.025,0.975),mean=mu_n,sd=sqrt(tau_n))
+qnorm(c(0.025,0.975),mean=mu_n, sd=sqrt(tau_n))
+quantile(post_norm_mu, c(0.025, 0.975))
 # we can that the 95% credible interval includes ybar
 
 # Some sensitivity analysis on the above
@@ -60,7 +61,7 @@ tau02 = 100
 mu_n = ((mu0/tau02)+(samp/sig2)*ybar)/((tau02^-1)+(samp/sig2))
 tau_n = (tau02*sig2)/(sig2+samp*tau02)
 
-post_norm_mu=rnorm(1000,mean=mu_n,sd=sqrt(tau_n))
+post_norm_mu = rnorm(1000,mean=mu_n,sd=sqrt(tau_n))
 
 # Posterior analysis 
 # This analysis seems unreasonable. 
@@ -71,6 +72,7 @@ mean(post_norm_mu)
 median(post_norm_mu)
 # The 95% credible interval
 qnorm(c(0.025,0.975),mean=mu_n,sd=sqrt(tau_n))
+quantile(post_norm_mu, c(0.025, 0.975))
 # Notice how the interval doesn't even include the sample mean!
 ybar
 
@@ -87,6 +89,7 @@ hist(post_norm_mu,breaks=50)
 mean(post_norm_mu)
 median(post_norm_mu)
 qnorm(c(0.025,0.975),mean=mu_n,sd=sqrt(tau_n))
+quantile(post_norm_mu, c(0.025, 0.975))
 # The posterior analysis is virtually unchanged from the first example.
 
 # Before beginning the normal model with unknown variance:
@@ -195,13 +198,13 @@ hist(post_norm_var,breaks=50)
 # These are large numbers, so it's hard to get a sense of how far off they are from the data.
 # Express the mean of the posterior variance as a fraction of the sample variance
 (mean(post_norm_var)-var(y))/var(y)
-(median (post_norm_var)-var(y))/var(y)
+(median(post_norm_var)-var(y))/var(y)
 
 mean(post_norm_var)
 median(post_norm_var)
 var(y)
 
 # The 95% credible interval
-quantile(post_norm_var,c(0.025,0.975))
+quantile(post_norm_var, c(0.025,0.975))
 # Note that this includes our sample variance
 var(y)

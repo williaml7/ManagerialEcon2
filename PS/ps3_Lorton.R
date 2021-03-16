@@ -7,7 +7,7 @@ library(geoR)
 # get data on avg duration of unemployment (in weeks) taken on a monthly basis 1948-2020:
 df <- read.csv("Duration.csv")
 
-# Q4 a.)
+z# Q4 a.)
 # mean, median, and standard deviation of the weeks variable in 50s, 60s, 70s, 80s, 90s, 2000s, 2010s:
 # 1950s:
 df %>% 
@@ -88,6 +88,7 @@ sample.mean <- mean(df$Weeks)
 post_exp <- rgamma(10000, 
                    shape = alpha + sample.size, 
                    scale = 1/(sample.size*sample.mean + beta))
+
 # Looking at the draws:
 hist(post_exp, breaks=50)
 mean(post_exp)
@@ -96,6 +97,8 @@ median(post_exp)
 qgamma(c(0.025,0.975), 
        shape = alpha + sample.size, 
        scale = 1/(sample.size*sample.mean + beta))
+# Or can get 95% credible interval from draws:
+quantile(post_exp, c(0.025, 0.975))
 
 # R code that Dr. McFadden gave me to check reasonableness of posterior draws:
 check <- rexp(n = 1000, rate = mean(post_exp))

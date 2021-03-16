@@ -194,7 +194,8 @@ alpha7 = 0.01
 sumalpha = (alpha1+alpha2+alpha3+alpha4+alpha5+alpha6+alpha7)
 sumalpha
 
-# Get 1,000 draws from the Dirichlet(a_i + y_i) posterior. 
+# Get 1,000 draws from the Dirichlet(a_i + y_i) posterior; each posterior value corresponds to the posterior
+# probability of choosing the corresponding transportation option.
 # Save them in a 1000 x 7 posterior matrix.
 total <- 1000
 
